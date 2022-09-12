@@ -1,1 +1,146 @@
-<p>user works!</p>
+<h1>Usuarios</h1>
+
+
+<table class="table tabler-bordered">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users; let i = index">
+            <th scope="row">
+                {{ i }}
+            </th>
+            <td>
+                {{ user.email }}
+            </td>
+            <td>
+                {{ user.phone }}
+            </td>
+            <td>
+                <span class="material-symbols-outlined text-primary" (click)="onLoadData( user )">
+                  edit
+                </span> &nbsp;
+                <span class="material-symbols-outlined text-danger">
+                  delete_forever
+                </span>
+            </td>
+        </tr>
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="4" class="text-center">
+                <div class="text-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnShowUserModal">
+  Nuevo usuario
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="onReset()"></button>
+            </div>
+
+            <form [formGroup]="frmUser">
+
+                <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="col-12">
+
+                            <div class="form-group">
+                                <label for="">Email</label>
+                                <input type="text" class="form-control " placeholder="example@domain.com" formControlName="email" [ngClass]="{
+                                    'is-invalid': controls['email']?.errors && touched('email'),
+                                    'is-valid': !controls['email']?.errors && touched('email')
+                                  }">
+                                <div *ngIf="controls['email']?.errors && touched('email')">
+
+                                    <small class="text-danger " *ngIf="controls['email']?.errors?.required ">
+                                      *Requerido
+                                    </small>
+
+                                    <small class="text-danger " *ngIf="controls['email']?.errors?.minlength ">
+                                      *Mínimo 3 letras
+                                    </small>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-12">
+
+                            <div class="form-group">
+                                <label for="">Phone</label>
+                                <input type="text" class="form-control " placeholder="+51 000 000 000" formControlName="phone" [ngClass]="{
+                                  'is-invalid': controls['phone']?.errors && touched('phone'),
+                                  'is-valid': !controls['phone']?.errors && touched('phone')
+                                }">
+
+                                <div *ngIf="controls['phone']?.errors && touched('phone')">
+
+                                    <small class="text-danger " *ngIf="controls['phone']?.errors?.required ">
+                                    *Requerido
+                                  </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnCloseUserModal" (click)="onReset()">
+                      Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary" [disabled]=" invalid " (click)="onSubmit()">
+                      Guardar
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

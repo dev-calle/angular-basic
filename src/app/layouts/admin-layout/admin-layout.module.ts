@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './admin-layout.component';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // un módulo es un contenedor de los componentes, rutas y demás
 
@@ -18,7 +19,9 @@ import { UserComponent } from './user/user.component';
 
   imports: [
     CommonModule, // importar utilidades de angular ( ngFor, ngIf .... )
-    RouterModule
+    RouterModule,
+
+    ReactiveFormsModule
   ],
 })
 export class AdminLayoutModule { }
