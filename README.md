@@ -1,3 +1,18 @@
+# Clonar repositorio
+```
+git clone https://github.com/dev-calle/angular-basic.git
+```
+
+# Resutar los paquetes de node
+```
+npm install
+```
+
+# Levantar servidor
+```
+ng serve -o
+```
+
 # AppBasic
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.17.
